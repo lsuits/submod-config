@@ -1,0 +1,38 @@
+// Lines beginning with '//' are comments and will be ignored when 
+// the file contents are parsed. 
+// 
+// This file should contain submodule metadata for each plugin
+// you would like to include in your Moodle project as a submodule.
+//
+// The installer script expects this data in the following format:
+//
+//
+//		local path 	(relative to the moodle root, aka $CFG->dirroot)
+//		remote path	(git clone path)
+//		[branch] 	(optional- if omitted, the default branch for the repository)
+//
+//
+// NB that the branch can also be a tag (or any ref).
+//
+// Records should be separated by blank lines.
+//
+// If you specify a repository in your datafile having the local path '.', 
+// it will be the first repository to be cloned, and all others will be added 
+// as its submodules. Specifying more than one parent repo will cause an error.
+
+
+// moodle
+//.
+//https://github.com/moodle/moodle.git
+//v2.7.1
+
+// HotPot (mod_hotpot)
+mod/hotpot
+https://github.com/gbateson/moodle-mod_hotpot
+master
+
+//Turnitin Assignment (mod_turnitintooltwo)
+//Turnitin v2
+mod/turnitintooltwo
+https://github.com/jmcgettrick/MoodleDirectV2
+develop

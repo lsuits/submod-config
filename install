@@ -1,0 +1,182 @@
+<?php
+/**
+  * Utillity script to assist in the installation of a new Moodle installation.
+  * 
+  * This script specifically addresses the problem of installing specific revisions 
+  * of multiple submodules into a fresh Moodle checkout. See sample.submod for an
+  * description of the expected input.
+  */
+
+class installer {
+
+	const NUMARGS = 3;
+
+	// cli args attributes
+	public $basedir, $cmd;
+
+	// internal attributes.
+	private $datafile, $rawdata, $rawmods;
+
+	private $parentrepo = false;
+
+	public function __construct($args){
+		$this->checkargs($args);
+	}
+
+	private function checkargs($args){
+
+		// should always exist - name of script.
+		$this->cmd = $args[0];
+
+		// ensure the count is what we expect.
+		$count = count($args);
+		if($count !== self::NUMARGS){
+			// remove the scriptname so we can print the other args easily.
+			array_shift($args);
+			printf("\nIncorrect number of args.\nNeeded %d, got %d: (%s)\n", self::NUMARGS - 1, $count - 1, implode(' ', $args));
+			$this->printusage();
+			die();
+		}
+
+		$this->basedir = $args[1];
+		// make sure we got a valid directory.
+		if(!is_dir($this->basedir) && !mkdir($this->basedir)){
+			printf("Invalid Directory: %s\n", $this->basedir);
+			$this->printusage();
+			die();
+		}
+
+		$this->datafile = $args[2];
+		// make sure file arg is a file.
+		if(!is_file($this->datafile)){
+			printf("Invalid File: %s\n", $this->datafile);
+			$this->printusage();
+			die();
+		}
+	}
+
+	private function printusage(){
+		printf("\nUSAGE:\nphp %s targetdir datafile\n\n", $this->cmd);
+		printf("targetdir should be a fully-qualified path for which you have write permissions.\n");
+		printf("datafile  should be a plain text file patterned after sample.submod\n\n");
+	}
+
+	private function readdata(){
+		// Get the file into a string.
+		$this->rawdata = file_get_contents($this->datafile)."\n\n"; //regex cheat!
+		// Split the string on empty lines.
+		$this->rawmods = preg_split('/[\n]{2,}/', $this->rawdata);
+		return $this->rawmods;
+	}
+
+	private function parsemods(){
+		$this->parsedmods = array();
+		foreach($this->rawmods as $idx => $rawmod){
+			$components = preg_split('/\n/', $rawmod);
+
+			$params = array();
+			foreach($components as $ndx => $c){
+				
+				if(preg_match('#^[\s]*//[\s]*#', $c)){
+					continue;
+				}
+				$params[] = $c;
+			}
+
+			$count = count($params);
+			if($count === 3 || $count === 2){
+				$mod = new submodule($params);
+				if($mod->localpath === '.'){
+					if($this->parentrepo === true){
+						$first  = array_shift($this->parsedmods);
+						$msg = sprintf("You cannot specify more than one parent project!\nAlready have %s as parent; cannot replace with %s\n", $first->remotepath, $mod->remotepath);
+						die($msg);
+					}
+					$this->parentrepo = true;
+					array_unshift($this->parsedmods, $mod);
+				}else{
+					$this->parsedmods[] = $mod;
+				}
+			}
+		}
+		return $this->parsedmods;
+	}
+
+	public function preparedestination(){
+		if(!$this->parentrepo && !is_dir($this->basedir.".git")){
+			$this->gohome();
+			exec("git init");
+		}elseif($this->parentrepo && is_dir($this->basedir.".git")){
+			die(sprintf("Target directory is already a git repository. Aborting.\n"));
+		}
+
+	}
+
+	private function checkoutall(){
+		$this->preparedestination();
+		foreach($this->parsedmods as $mod){
+
+			$this->clonemod($mod);
+
+			if(null !== $mod->branch){
+				$this->branch($mod);
+			}
+
+			$this->makesubmod($mod);
+			printf("\n   ------  done  -----\n\n");
+		}
+	}
+
+	public function gohome(){
+		if(getcwd() != $this->basedir){
+			chdir($this->basedir);
+		}
+	}
+
+	private function clonemod(submodule $mod){
+		$this->gohome();
+		$clone  = sprintf("git clone %s %s", $mod->remotepath, $mod->localpath);
+		exec($clone);
+	}
+
+	private function branch(submodule $mod){
+		$this->gohome();
+		chdir($mod->localpath);
+		$branch = sprintf("git checkout %s", $mod->branch);
+		exec($branch);
+	}
+
+	private function makesubmod(submodule $mod){
+		//skip adding moodle as a submod of itself
+		$this->gohome();
+		$submod = sprintf("git submodule add %s %s", $mod->remotepath, $mod->localpath);
+		exec($submod);
+	}
+
+	public function install(){
+		$this->readdata();
+		$this->parsemods();
+		$this->checkoutall();
+	}
+}
+
+/*
+ * tiny data structure to simplify dealing with submod data.
+ */
+class submodule {
+
+	public $localpath, $remotepath, $branch;
+
+	public function __construct($params){
+		$this->localpath 	= $params[0];
+		$this->remotepath  	= $params[1];
+		// If no branch is provided, we will rely on clone (later) checking out some default branch.
+		$this->branch		= isset($params[2]) ? $params[2] : null;
+	}
+}
+
+
+$installer = new installer($argv);
+$installer->install();
+exit(0);
+?>
