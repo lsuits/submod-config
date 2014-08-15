@@ -20,3 +20,6 @@ If you specify a repository in your datafile having the local path '.',
 it will be the first repository to be cloned, and all others will be added 
 as its submodules. Specifying more than one parent repo will cause an error.
 
+Typcial usage might be as follows: 
+
+	php install /var/www/html/moodle/ mymods.submod
