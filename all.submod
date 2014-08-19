@@ -1,0 +1,247 @@
+// moodle
+.
+https://github.com/moodle/moodle.git
+v2.7.1
+
+blocks/backadel
+git@github.com:lsuits/backadel
+
+blocks/bulk_delete
+git@github.com:lsuits/bulk_delete
+
+blocks/cps
+git@github.com:lsuits/cps
+
+blocks/export_forum
+git@github.com:lsuits/export_forum
+
+blocks/grade_notify
+git@github.com:lsuits/grade_notify
+
+blocks/grades_at_a_glance
+git@github.com:lsuits/grades_at_a_glance
+
+blocks/helpdesk
+git@github.com:lsuits/helpdesk
+
+blocks/instructor_profile
+git@github.com:lsuits/instructor_profile
+
+blocks/my_picture
+git@github.com:lsuits/my_picture
+
+blocks/post_grades
+git@github.com:lsuits/post_grades
+
+blocks/quickmail
+git@github.com:lsuits/quickmail
+
+blocks/rollsheet
+git@github.com:lsuits/rollsheet
+
+blocks/sentinel
+git@github.com:lsuits/block_sentinel
+
+blocks/simple_restore
+git@github.com:lsuits/simple_restore
+
+blocks/student_gradeviewer
+git@github.com:lsuits/student_gradeviewer
+
+blocks/ues_logs
+git@github.com:lsuits/ues_logs
+
+blocks/ues_meta_viewer
+git@github.com:lsuits/ues_meta_viewer
+
+blocks/ues_people
+git@github.com:lsuits/ues_people
+
+blocks/ues_reprocess
+git@github.com:lsuits/ues_reprocess
+
+enrol/ues
+git@github.com:lsuits/ues
+
+local/ap_report
+git@github.com:lsuits/ap_report
+
+local/feature_request
+git@github.com:lsuits/feature_request
+
+local/proctoru
+git@github.com:lsuits/local_proctoru
+
+// local/lsu
+// git@github.com:lsuits/ues_lsu_enrollment.git
+
+local/xml
+git@github.com:lsuits/lsu_xml_enrollment_provider
+
+// local/online
+// git@github.com:lsuits/online.git
+
+theme/lsu
+git@github.com:lsuits/lsu_theme.git
+
+// Attendance (mod_attendance)
+mod/attendance
+https://github.com/University-of-Strathclyde-LTE-Team/moodle-mod_attendance
+master
+// setType and some other debug messages, nothing critical. Works well.
+
+// BigBlueButton (mod_bigbluebuttonbn)
+mod/bigbluebuttonbn
+https://github.com/lsuits/moodle-mod_bigbluebuttonbn.git
+// LSU repo (disable-recording)
+// Works well.
+
+// Certificate (mod_certificate)
+mod/certificate
+https://github.com/lsuits/moodle-mod_certificate
+master
+// LSU repo (27_readiness)
+// Works well.
+
+// HotPot (mod_hotpot)
+mod/hotpot
+https://github.com/gbateson/moodle-mod_hotpot
+master
+
+// Hot Potatoes XML format (qformat_hotpot)
+question/format/hotpot
+https://github.com/gbateson/moodle-qformat_hotpot
+master
+
+// Lightbox Gallery (mod_lightboxgallery)
+mod/lightboxgallery
+https://github.com/netspotau/moodle-mod_lightboxgallery
+master
+// Works well.
+
+// Turning Technologies (mod_turningtech)
+mod/turningtech
+https://github.com/lsuits/mod_turningtech
+master
+
+// Turning Technologies (block_turningtech)
+blocks/turningtech
+https://github.com/lsuits/block_turningtech
+master
+
+//Turnitin Assignment (mod_turnitintooltwo)
+//Turnitin v2
+// mod/turnitintooltwo
+// https://github.com/jmcgettrick/MoodleDirectV2
+// develop
+
+// Turnitin Plagiarism Tool
+// Turnitin v2
+// https://github.com/jmcgettrick/MoodleDirectV2
+// develop branch
+
+// Turnitin Block (block_turnitin)
+// Turnitin v2
+// https://github.com/jmcgettrick/MoodleDirectV2
+// develop branch
+
+// Macmillan LMS (block_bfwpub)
+blocks/bfwpub
+git@github.com:lsuits/bfwpub.git
+master
+// LSU Repo
+
+// Moodlerooms Framework (local_mr)
+local/mr
+https://github.com/moodlerooms/moodle-local_mr
+master
+
+// Redis (cachestore_redis)
+cache/stores/redis
+https://github.com/moodlerooms/moodle-cachestore_redis
+master
+
+// Moodle Adminer (local_adminer)
+local/adminer
+https://github.com/lsuits/adminer
+master
+
+// McGraw Hill AAIRS (block_mhaairs)
+// Latest LSU repo works. Some serious issues. 
+blocks/mhaairs
+git@github.com:lsuits/mhaairs.git
+master
+
+// Enroll users with CSV (block_csv_enrol)
+blocks/csv_enrol
+https://bitbucket.org/jpeak5/csv_enrol
+master
+//Updated master for 2.7 and submitted pull request to original author
+
+// OU Multiple Response (qtype_oumultiresponse)
+question/type/oumultiresponse/
+https://github.com/moodleou/moodle-qtype_oumultiresponse
+master
+// No complaints from Moodle. Seems to work well.
+
+// Oauth2 (auth_googleoauth2)
+auth/googleoauth2
+https://github.com/lsuits/moodle-auth_googleoauth2
+// Updated for 2.7
+master
+
+// Panopto
+blocks/panopto
+https://github.com/lsuits/Moodle-2.0-Plugin-for-Panopto
+master
+
+//Verbose Importer.
+grade/import/verboseimport
+https://github.com/lsuits/grade_import_verboseimport
+master
+
+// Completed:
+// Kaltura Video Assignment (mod_kalvidassign)
+mod/kalvidassign
+git@github.com:lsuits/moodle-mod_kalvidassign.git
+MOODLE_27_STABLE
+
+// Kaltura Video Presentation (mod_kalvidpres)
+mod/kalvidpres
+git@github.com:lsuits/moodle-mod_kalvidpres.git
+MOODLE_27_STABLE
+
+// Kaltua Video Resource (mod_kalvidres)
+mod/kalvidres
+git@github.com:lsuits/moodle-mod_kalvidres.git
+MOODLE_27_STABLE
+
+// Kaltua (repository_kaltura)
+repository/kaltura
+git@github.com:lsuits/moodle-repository_kaltura.git
+MOODLE_27_STABLE
+
+// Upload media to Kaltura (repository_kaltura_uploader)
+repository/kaltura_uploader
+git@github.com:lsuits/moodle-repository_kaltura_uploader.git
+MOODLE_27_STABLE
+
+// My Media (local_mymedia)
+local/mymedia
+git@github.com:lsuits/moodle-local_mymedia.git
+MOODLE_27_STABLE
+
+
+// Kaltura package libraries (local_kaltura)
+local/kaltura
+git@github.com:lsuits/moodle-local_kaltura.git
+MOODLE_27_STABLE
+
+// Kaltura Media (filter_kaltura)
+filter/kaltura
+git@github.com:lsuits/moodle-filter_kaltura.git
+MOODLE_27_STABLE
+
+
+// Advanced Forum (mod_hsuforum)
+// Not needed as of now.
