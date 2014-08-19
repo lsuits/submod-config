@@ -1,7 +1,7 @@
 // moodle
-.
-https://github.com/moodle/moodle.git
-v2.7.1
+// .
+// https://github.com/moodle/moodle.git
+// v2.7.1
 
 blocks/backadel
 git@github.com:lsuits/backadel
@@ -245,3 +245,24 @@ MOODLE_27_STABLE
 
 // Advanced Forum (mod_hsuforum)
 // Not needed as of now.
+
+grade/import/smart
+git@github.com:lsuits/smart-importer.git
+
+grade/report/gradebook_builder
+git@github.com:lsuits/gradebook_builder.git
+
+grade/report/history
+git@github.com:lsuits/moodle-gradereport_history.git
+
+grade/report/projected
+git@github.com:lsuits/projected-final-grade.git
+
+grade/report/quick_edit
+git@github.com:lsuits/quick_edit.git
+
+local/lsu
+git@github.com:lsuits/ues_lsu_enrollment.git
+
+local/online
+git@github.com:lsuits/online.git
